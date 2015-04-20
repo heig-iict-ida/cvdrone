@@ -11,6 +11,10 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
@@ -743,10 +747,30 @@ public class ControlDroneActivity
         localBroadcastMgr.unregisterReceiver(droneCameraReadyChangedReceiver);
         localBroadcastMgr.unregisterReceiver(droneRecordReadyChangeReceiver);
     }
+    
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                    view.getVideoRenderer().setOpenCVReady(true);
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
 
     @Override
     protected void onResume()
     {
+    	Log.i(TAG, "Requesting OpenCV");
+    	OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_6, this, mLoaderCallback);
+    	
         if (view != null) {
             view.onResume();
         }
