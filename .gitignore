@@ -30,3 +30,6 @@ jni/FFMPEG/Includes
 /libs/armeabi-v7a/libavutil.so
 /libs/armeabi-v7a/libglfix.so
 /libs/armeabi-v7a/libswscale.so
+/jni/API/libpc_ardrone.a
+/jni/API/libsdk.a
+/jni/API/libvlib.a
