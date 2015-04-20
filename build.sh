@@ -11,7 +11,7 @@ echo Android NDK Path: $ANDROID_NDK_PATH_FULL
 echo Android SDK Path: $ANDROID_SDK_PATH_FULL
 echo AR.Drone Library Path: $ARDRONE_LIB_PATH_FULL
 
-./check_dependencies.sh
+#./check_dependencies.sh
 
 export JAVA_HOME=$JDK_PATH
 
@@ -21,6 +21,7 @@ echo $ARDRONE_TARGET_OS
 
 GCC=$ANDROID_NDK_PATH/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc_4.6
 GCC=$(echo $GCC|sed 's#/##g')
+echo $GCC
 
 #if the target is "prod", then sign with the Parrot generic keystore
 if [ "$1" = "prod" ]; then

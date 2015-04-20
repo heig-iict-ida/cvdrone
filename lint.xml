@@ -5,4 +5,7 @@
         <ignore path="res/layout/guest_space_informations_page_share.xml" />
     </issue>
     <issue id="MissingTranslation" severity="ignore" />
+    <issue id="WrongCall">
+        <ignore path="src/com/parrot/freeflight/video/VideoStageRenderer.java" />
+    </issue>
 </lint>

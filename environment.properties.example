@@ -1,7 +1,10 @@
 # Change according to your environment
-ANDROID_SDK_PATH=~/dev/sdk/adt-bundle-linux-x86-20130219/sdk/
-ANDROID_NDK_PATH=~/dev/sdk/android-ndk-r8e/
-ARDRONE_LIB_PATH=../../../../ARDroneLib/
+ANDROID_SDK_PATH=/home/julien/programs/android-studio/sdk/
+ANDROID_NDK_PATH=/home/julien/programs/android-ndk-r10d_x86/
+ARDRONE_LIB_PATH=../ARDrone_SDK_2_0_1/ARDroneLib/
+# You can get those values from the build.sh script
+ARDRONE_TARGET_OS=Linux_3.13.0-46-generic_GNU_Linux
+GCC=homejulienprogramsandroid-ndk-r10d_x86toolchainsarm-linux-androideabi-4.6prebuiltlinux-x86binarm-linux-androideabi-gcc_4.6
 
 # Don not edit
 JDK_PATH=$(bash -c 'JAVAC_PATH=$(which javac); while [ -L $JAVAC_PATH ]; do JAVAC_PATH=$(readlink $JAVAC_PATH); done; JPATH=$(echo $JAVAC_PATH | sed s:bin/javac::); echo $JPATH')
