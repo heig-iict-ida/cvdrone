@@ -257,6 +257,10 @@ public class HudViewController
 		renderer.addSprite(USB_INDICATOR_TEXT_ID, txtUsbRemaining);
 	}
 	
+	public VideoStageRenderer getVideoRenderer() {
+		return renderer;
+	}
+	
 	
 	private void initNavdataStrings()
 	{

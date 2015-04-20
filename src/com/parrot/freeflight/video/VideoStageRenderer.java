@@ -14,6 +14,12 @@ import java.util.Map;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import org.opencv.android.Utils;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -26,11 +32,14 @@ import com.parrot.freeflight.ui.gl.GLBGVideoSprite;
 import com.parrot.freeflight.ui.hud.Sprite;
 
 public class VideoStageRenderer implements Renderer {
+	private static final String TAG = "VideoStageRenderer";
 
 	private GLBGVideoSprite bgSprite;
 	
 	private ArrayList<Sprite> sprites;
 	private Map<Integer, Sprite> idSpriteMap;
+	
+	private boolean openCVReady = false;
 	
 	private float fps;
 	
@@ -92,6 +101,10 @@ public class VideoStageRenderer implements Renderer {
 		}
 	}
 	
+	public void setOpenCVReady(boolean v) {
+		openCVReady = v;
+	}
+	
 	
 
 	public Sprite getSprite(Integer id) 
@@ -111,9 +124,21 @@ public class VideoStageRenderer implements Renderer {
 		}
 	}
 	
+	static void testOpenCV(Bitmap bitmap) {
+		Mat img = new Mat();
+		Utils.bitmapToMat(bitmap, img);
+		Core.circle(img, new Point(50, 50), 10, new Scalar(255, 0, 0), -1);
+		
+		Utils.matToBitmap(img, bitmap);
+	}
+	
 	
 	public void onDrawFrame(Canvas canvas)
 	{
+		//Log.i(TAG, "Drawing video frame with Canvas");
+		if (openCVReady) {
+			testOpenCV(bgSprite.getVideoBitmap());
+		}
 		bgSprite.onDraw(canvas, 0, 0);
 
 		synchronized (sprites) {
@@ -137,6 +162,8 @@ public class VideoStageRenderer implements Renderer {
 	
 	public void onDrawFrame(GL10 gl) 
 	{
+		//Log.i(TAG, "Drawing video frame with OpenGL");
+		
 	    // Limiting framerate in order to save some CPU time
 	    endTime = System.currentTimeMillis();
 	    long dt = endTime - startTime;

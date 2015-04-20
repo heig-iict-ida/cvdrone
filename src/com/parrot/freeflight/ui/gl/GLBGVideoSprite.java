@@ -37,6 +37,9 @@ public class GLBGVideoSprite extends GLSprite
 		video = Bitmap.createBitmap(512, 512, Bitmap.Config.RGB_565);
 	}
 	
+	public Bitmap getVideoBitmap() {
+		return video;
+	}
 
 	@Override
 	protected void onUpdateTexture()
