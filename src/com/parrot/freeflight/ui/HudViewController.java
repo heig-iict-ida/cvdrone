@@ -122,14 +122,6 @@ public class HudViewController
 		canvasView = null;
 		joysticks = new JoystickBase[2];
 
-		
-		glView = new GLSurfaceView(context);
-		glView.setEGLContextClientVersion(2);
-		
-		context.setContentView(glView);
-		
-		renderer = new VideoStageRenderer(context, null);
-		
 		if (useSoftwareRendering){
 			// Replacing OpneGl based view with Canvas based one
 //			RelativeLayout root = (RelativeLayout) context.findViewById(R.id.controllerRootLayout);
@@ -138,8 +130,16 @@ public class HudViewController
 			
 			canvasView = new VideoStageView(context);
 			canvasView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			
+			context.setContentView(canvasView);
 //			root.addView(canvasView, 0);
+		} else {
+			glView = new GLSurfaceView(context);
+			glView.setEGLContextClientVersion(2);
+			
+			context.setContentView(glView);
 		}
+		renderer = new VideoStageRenderer(context, null);
 		
 
 		initNavdataStrings();

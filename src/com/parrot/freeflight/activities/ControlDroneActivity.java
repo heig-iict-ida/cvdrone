@@ -198,6 +198,8 @@ public class ControlDroneActivity
             useSoftwareRendering = false;
 //            forceCombinedControlMode = false;
         }
+        Log.i(TAG, "Forcing software rendering");
+        useSoftwareRendering = true;
 
         pauseVideoWhenOnSettings = getResources().getBoolean(R.bool.settings_pause_video_when_opened);
 
