@@ -5,6 +5,21 @@ CVDrone
 A modified FreeFlight2 application that includes code to access video stream
 using OpenCV
 
+Example usage
+=============
+
+Have a look at *com.parrot.freeflight.video.VideoStageRenderer*, in the *testOpenCV* function.
+This function is called from *VideoStageRenderer.onDrawFrame(Canvas)*.
+
+We force software rendering in ControlDroneActivity so we can easily access the bitmap
+containing video frames. By default, FreeFlight uses hardware rendering and updates an OpenGL
+with the video data using native code, so it's harder to access the video frame.
+
+The red circle on the image below is drawn using OpenCV's circle function :
+
+.. image:: screenshot.png
+   :width: 80%
+
 Installation
 ============
 
@@ -14,13 +29,12 @@ Installation
 Note that you need the x86 version of the NDK (the ARDroneLib FFMPEG makefile has hardcoded
 paths that expect a x86 NDK)
 
-- download Android SDK base package:
-http://developer.android.com/sdk/index.html
+- download Android SDK base package: http://developer.android.com/sdk/index.html
 - untar SDK in $HOME/dev/sdk (or any other location)
 - export PATH=${PATH}:$HOME/android/android-sdk-linux_x86/tools
 - apt-get install ant
 - run 'android'
-  * download SDK 2.2
+    - download SDK 2.2
 - download Android NDK r5b package:
 - untar NDK to $HOME/dev/sdk (or any other location)
 
